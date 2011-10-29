@@ -95,7 +95,7 @@ module OmniAuth
       elsif env['HTTP_REFERER'] && !env['HTTP_REFERER'].match(/#{request_path}$/)
         @env['rack.session']['omniauth.origin'] = env['HTTP_REFERER']
       end
-      redirect(script_name + callback_path)
+      redirect(script_name + callback_path + query_string)
     end
 
     def mock_callback_call
@@ -126,6 +126,8 @@ module OmniAuth
 
     def callback_phase
       @env['omniauth.auth'] = auth_hash
+      @env['omniauth.params'] = session['query_params'] || {}
+      session['query_params'] = nil if session['query_params']
       call_app!
     end
 
@@ -155,6 +157,7 @@ module OmniAuth
 
     def call_through_to_app
       status, headers, body = *call_app!
+      session['query_params'] = Rack::Request.new(env).params
       @response = Rack::Response.new(body, status, headers)
 
       status == 404 ? nil : @response.finish

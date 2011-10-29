@@ -4,13 +4,13 @@ module OmniAuth
       MAJOR = 0
     end
     unless defined?(::OmniAuth::Version::MINOR)
-      MINOR = 2
+      MINOR = 3
     end
     unless defined?(::OmniAuth::Version::PATCH)
-      PATCH = 6
+      PATCH = 2
     end
     unless defined?(::OmniAuth::Version::PRE)
-      PRE   = "3.copious"
+      PRE   = "1.copious"
     end
     unless defined?(::OmniAuth::Version::STRING)
       STRING = [MAJOR, MINOR, PATCH, PRE].compact.join('.')
