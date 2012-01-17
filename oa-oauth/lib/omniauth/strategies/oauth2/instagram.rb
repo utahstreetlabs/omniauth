@@ -15,7 +15,11 @@ module OmniAuth
           :authorize_url => 'https://api.instagram.com/oauth/authorize',
           :token_url => 'https://api.instagram.com/oauth/access_token',
         }
-        super(app, :instagram, client_id, client_secret, client_options, options, &block)
+        super(app, self.provider_name, client_id, client_secret, client_options, options, &block)
+      end
+
+      def provider_name
+        :instagram
       end
 
       def auth_hash
