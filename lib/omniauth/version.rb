@@ -10,7 +10,7 @@ module OmniAuth
       PATCH = 2
     end
     unless defined?(::OmniAuth::Version::PRE)
-      PRE   = "1.copious"
+      PRE   = "2.copious"
     end
     unless defined?(::OmniAuth::Version::STRING)
       STRING = [MAJOR, MINOR, PATCH, PRE].compact.join('.')
